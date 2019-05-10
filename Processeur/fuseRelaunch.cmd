@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/PipelineTB_isim_beh.exe" -prj "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/PipelineTB_beh.prj" "work.PipelineTB" 
