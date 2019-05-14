@@ -46,10 +46,10 @@ ARCHITECTURE behavior OF BancRegistresTB IS
          addrB : IN  std_logic_vector(3 downto 0);
          addrW : IN  std_logic_vector(3 downto 0);
          W : IN  std_logic;
-         DATA : IN  std_logic_vector(7 downto 0);
+         DATA : IN  std_logic_vector(15 downto 0);
          RST : IN  std_logic;
-         QA : OUT  std_logic_vector(7 downto 0);
-         QB : OUT  std_logic_vector(7 downto 0)
+         QA : OUT  std_logic_vector(15 downto 0);
+         QB : OUT  std_logic_vector(15 downto 0)
         );
     END COMPONENT;
     
@@ -60,12 +60,12 @@ ARCHITECTURE behavior OF BancRegistresTB IS
    signal addrB : std_logic_vector(3 downto 0) := (others => '0');
    signal addrW : std_logic_vector(3 downto 0) := (others => '0');
    signal W : std_logic := '0';
-   signal DATA : std_logic_vector(7 downto 0) := (others => '0');
+   signal DATA : std_logic_vector(15 downto 0) := (others => '0');
    signal RST : std_logic := '0';
 
  	--Outputs
-   signal QA : std_logic_vector(7 downto 0);
-   signal QB : std_logic_vector(7 downto 0);
+   signal QA : std_logic_vector(15 downto 0);
+   signal QB : std_logic_vector(15 downto 0);
 
    -- Clock period definitions
    constant CLK_period : time := 10 ns;
@@ -108,17 +108,17 @@ BEGIN
       wait for CLK_period*10;
 		W <= '1';
 		addrW <= x"0";
-		DATA <= x"09";
+		DATA <= x"0900";
       wait for CLK_period*10;
 		W<= '1';
 		addrW <= x"1";	
-		DATA <= x"4B";
+		DATA <= x"4B00";
       wait for CLK_period*10;
 		W<= '0';
       wait for CLK_period*10;
 		W<= '1';
 		addrW <= x"0";
-		DATA <= x"05";
+		DATA <= x"0500";
       wait for CLK_period*10;
 
       -- insert stimulus here 

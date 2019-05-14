@@ -30,14 +30,15 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Pipeline is
-    Port ( Ain : in  STD_LOGIC_VECTOR (15 downto 0);
-           Bin : in  STD_LOGIC_VECTOR (15 downto 0);
-           Opin : in  STD_LOGIC_VECTOR (3 downto 0);
-           Cin : in  STD_LOGIC;
-           Aout : out  STD_LOGIC_VECTOR (15 downto 0);
-           Bout : out  STD_LOGIC_VECTOR (15 downto 0);
-           Opout : out  STD_LOGIC_VECTOR (3 downto 0);
-           Cout : out  STD_LOGIC;
+	generic(MAX_BITS: Natural :=16; OP_BITS: Natural:= 4);
+    Port ( Ain : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+           Bin : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+           Opin : in  STD_LOGIC_VECTOR (OP_BITS-1 downto 0);
+           Cin : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+           Aout : out  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+           Bout : out  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+           Opout : out  STD_LOGIC_VECTOR (OP_BITS-1 downto 0);
+           Cout : out  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
            CLK : in  STD_LOGIC);
 end Pipeline;
 

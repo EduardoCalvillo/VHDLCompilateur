@@ -4,14 +4,14 @@ Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to /home/calvillo/Bureau/Compilateur/VHDL/Processeur/xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
+Total REAL time to Xst completion: 0.00 secs
 Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Parameter xsthdpdir set to /home/calvillo/Bureau/Compilateur/VHDL/Processeur/xst
 
 
-Total REAL time to Xst completion: 1.00 secs
+Total REAL time to Xst completion: 0.00 secs
 Total CPU time to Xst completion: 0.06 secs
  
 --> 
@@ -48,8 +48,8 @@ Parsing entity <BancRegistres>.
 Parsing architecture <Behavioral> of entity <bancregistres>.
 
 
-Total REAL time to Xst completion: 3.00 secs
-Total CPU time to Xst completion: 2.36 secs
+Total REAL time to Xst completion: 2.00 secs
+Total CPU time to Xst completion: 2.37 secs
  
 --> 
 

@@ -29,11 +29,14 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
+
 entity ALU is
-    Port ( A : in  STD_LOGIC_VECTOR (15 downto 0);
-           B : in  STD_LOGIC_VECTOR (15 downto 0);
-           S : out  STD_LOGIC_VECTOR (15 downto 0);
-           OP : in  STD_LOGIC_VECTOR (3 downto 0);
+
+	generic(MAX_BITS: Natural :=16; OP_BITS: Natural:= 4);
+	Port ( A : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+           B : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+           S : out  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+           OP : in  STD_LOGIC_VECTOR (OP_BITS-1 downto 0);
            N : out  STD_LOGIC;
            O : out  STD_LOGIC;
            C : out  STD_LOGIC;
@@ -41,23 +44,23 @@ entity ALU is
 end ALU;
 
 architecture Behavioral of ALU is
-	signal Stmp : STD_LOGIC_VECTOR (31 downto 0);
+	signal Stmp : STD_LOGIC_VECTOR (MAX_BITS*2-1 downto 0);
 begin
 	Stmp <= 	std_logic_vector(unsigned(x"0000"&A) + unsigned(x"0000"&B)) when OP = x"1" else
-				std_logic_vector(unsigned(x"0000"&A) - unsigned(x"0000"&B)) when OP = x"2" else 
-				std_logic_vector(unsigned(A) * unsigned(B)) when OP = x"3" else
+				std_logic_vector(unsigned(x"0000"&A) - unsigned(x"0000"&B)) when OP = x"3" else 
+				std_logic_vector(unsigned(A) * unsigned(B)) when OP = x"2" else
 				std_logic_vector(unsigned(x"0000"&A) / unsigned(x"0000"&B)) when OP = x"4" else
 				(others => '0');
-	C <= Stmp (16) when OP = x"1" else '0';
-	O <= Stmp (16) when OP = x"3" and not(Stmp(31 downto 16) = x"0000") and not(Stmp(31 downto 16) = x"FFFF")  else 
-				'1' when OP = x"1" and A(15) = '0' and B(15) = '0' and Stmp(15) = '1' else
-				'1' when OP = x"1" and A(15) = '1' and B(15) = '1' and Stmp(15) = '0' else
-				'1' when OP = x"2" and A(15) = '0' and B(15) = '1' and Stmp(15) = '1' else
-				'1' when OP = x"2" and A(15) = '1' and B(15) = '0' and Stmp(15) = '0' else
+	C <= Stmp (MAX_BITS) when OP = x"1" else '0';
+	O <= Stmp (MAX_BITS) when OP = x"3" and not(Stmp((MAX_BITS*2)-1 downto MAX_BITS) = x"0000") and not(Stmp((MAX_BITS*2)-1 downto MAX_BITS) = x"FFFF")  else 
+				'1' when OP = x"1" and A(MAX_BITS-1) = '0' and B(MAX_BITS-1) = '0' and Stmp(MAX_BITS-1) = '1' else
+				'1' when OP = x"1" and A(MAX_BITS-1) = '1' and B(MAX_BITS-1) = '1' and Stmp(MAX_BITS-1) = '0' else
+				'1' when OP = x"2" and A(MAX_BITS-1) = '0' and B(MAX_BITS-1) = '1' and Stmp(MAX_BITS-1) = '1' else
+				'1' when OP = x"2" and A(MAX_BITS-1) = '1' and B(MAX_BITS-1) = '0' and Stmp(MAX_BITS-1) = '0' else
 				'0';	
 	Z <= '1' when Stmp = x"00000000" else '0';
-	N <= Stmp(15);
-	S <= Stmp (15 downto 0);
+	N <= Stmp(MAX_BITS-1);
+	S <= Stmp (MAX_BITS-1 downto 0);
 
 end Behavioral;
 

@@ -1,9 +1,6 @@
-set -tmpdir "xst/projnav.tmp"
-set -xsthdpdir "xst"
-run
--ifn ALU.prj
--ofn ALU
--ofmt NGC
+set -tmpdir "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/xst/projnav.tmp"
+set -xsthdpdir "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/xst"
+run -compileonly yes
 -p xc6slx16-2-csg324
 -top ALU
 -opt_mode Speed
@@ -50,3 +47,4 @@ run
 -iob Auto
 -equivalent_register_removal YES
 -slice_utilization_ratio_maxmargin 5
+-ifn ALU.prj

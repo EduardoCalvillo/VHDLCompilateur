@@ -31,6 +31,7 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity BancRegistres is
+generic(MAX_BITS: Natural:=16; OP_BITS : Natural:=4);
     Port (	
 	 CLK : in STD_LOGIC;
 	 RST : in STD_LOGIC;
@@ -38,15 +39,15 @@ entity BancRegistres is
 	 addrB : in STD_LOGIC_VECTOR (3 downto 0);
 	 addrW : in STD_LOGIC_VECTOR (3 downto 0);
 	 W : in STD_LOGIC;
-	 DATA : in STD_LOGIC_VECTOR (7 downto 0);
-	 QA : out STD_LOGIC_VECTOR (7 downto 0);
-	 QB : out STD_LOGIC_VECTOR (7 downto 0)
+	 DATA : in STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+	 QA : out STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+	 QB : out STD_LOGIC_VECTOR (MAX_BITS-1 downto 0)
 	 );
 end BancRegistres;
 
 architecture Behavioral of BancRegistres is
 
-	type bancRegs is array (0 to 15) of std_logic_vector (7 downto 0);
+	type bancRegs is array (0 to 15) of std_logic_vector (MAX_BITS-1 downto 0);
 	signal registers: bancRegs;
 	
 begin
@@ -60,7 +61,7 @@ begin
 			end if;
 	end process;
 	-- Bypass
-		QA <= DATA when (addrW = addrA) else registers(to_integer(unsigned(addrA))); 
-		QB <= DATA when (addrW = addrB) else registers(to_integer(unsigned(addrB)));
+		QA <= DATA when (addrW = addrA and W = '1') else registers(to_integer(unsigned(addrA))); 
+		QB <= DATA when (addrW = addrB and W = '1') else registers(to_integer(unsigned(addrB)));
 end Behavioral;
 

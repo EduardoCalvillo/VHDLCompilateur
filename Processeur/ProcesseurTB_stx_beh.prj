@@ -1,0 +1,5 @@
+vhdl isim_temp "Pipeline.vhd"
+vhdl isim_temp "BancRegistres.vhd"
+vhdl isim_temp "ACU.vhd"
+vhdl isim_temp "Processeur.vhd"
+vhdl isim_temp "ProcesseurTB.vhd"

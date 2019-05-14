@@ -1,23 +1,24 @@
-Running: /usr/local/insa/Xilinx.ISE/13.4/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "secureip" -o "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/BancRegistresTB_isim_beh.exe" -prj "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/BancRegistresTB_beh.prj" "work.BancRegistresTB" 
+Running: /usr/local/insa/Xilinx.ISE/13.4/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "secureip" -o "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/MemoireTB_isim_beh.exe" -prj "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/MemoireTB_beh.prj" "work.MemoireTB" 
 ISim O.87xd (signature 0x8ddf5b5d)
 Number of CPUs detected in this system: 4
 Turning on mult-threading, number of parallel sub-compilation jobs: 8 
 Determining compilation order of HDL files
-Parsing VHDL file "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/BancRegistres.vhd" into library work
-Parsing VHDL file "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/BancRegistresTB.vhd" into library work
+Parsing VHDL file "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/MemoireDonnees.vhd" into library work
+Parsing VHDL file "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/MemoireTB.vhd" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 96384 KB
-Fuse CPU Usage: 870 ms
+Fuse Memory Usage: 96752 KB
+Fuse CPU Usage: 960 ms
 Compiling package standard
 Compiling package std_logic_1164
+Compiling package math_real
 Compiling package numeric_std
-Compiling architecture behavioral of entity BancRegistres [bancregistres_default]
-Compiling architecture behavior of entity bancregistrestb
+Compiling architecture behavioral of entity MemoireDonnees [\MemoireDonnees(16,4)\]
+Compiling architecture behavior of entity memoiretb
 Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
-Compiled 6 VHDL Units
-Built simulation executable /home/calvillo/Bureau/Compilateur/VHDL/Processeur/BancRegistresTB_isim_beh.exe
-Fuse Memory Usage: 667908 KB
-Fuse CPU Usage: 940 ms
-GCC CPU Usage: 100 ms
+Compiled 7 VHDL Units
+Built simulation executable /home/calvillo/Bureau/Compilateur/VHDL/Processeur/MemoireTB_isim_beh.exe
+Fuse Memory Usage: 670376 KB
+Fuse CPU Usage: 1050 ms
+GCC CPU Usage: 150 ms
