@@ -5,14 +5,14 @@ Parameter TMPDIR set to /home/calvillo/Bureau/Compilateur/VHDL/Processeur/xst/pr
 
 
 Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total CPU time to Xst completion: 0.09 secs
  
 --> 
 Parameter xsthdpdir set to /home/calvillo/Bureau/Compilateur/VHDL/Processeur/xst
 
 
 Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total CPU time to Xst completion: 0.09 secs
  
 --> 
 Reading design: Multiplexeur.prj
@@ -48,13 +48,13 @@ Parsing entity <Multiplexeur>.
 Parsing architecture <Behavioral> of entity <multiplexeur>.
 
 
-Total REAL time to Xst completion: 4.00 secs
-Total CPU time to Xst completion: 3.25 secs
+Total REAL time to Xst completion: 3.00 secs
+Total CPU time to Xst completion: 2.14 secs
  
 --> 
 
 
-Total memory usage is 300960 kilobytes
+Total memory usage is 302116 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)

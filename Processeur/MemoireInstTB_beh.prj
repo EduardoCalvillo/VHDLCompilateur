@@ -1,0 +1,3 @@
+vhdl work "../common.vhd"
+vhdl work "MemoireInst.vhd"
+vhdl work "MemoireInstTB.vhd"

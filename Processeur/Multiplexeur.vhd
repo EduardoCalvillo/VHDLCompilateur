@@ -32,29 +32,29 @@ use IEEE.math_real.all;
 
 entity Multiplexeur is
 generic(MAX_BITS: Natural:=16; OP_BITS : Natural:=4);
-    Port ( Cle : in STD_LOGIC_VECTOR (2**OP_BITS);
+    Port ( Cle : in STD_LOGIC_VECTOR ((2**OP_BITS)-1 downto 0);
 				Sel : in  STD_LOGIC_VECTOR (OP_BITS-1 downto 0);
            I0 : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
            I1 : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
            S : out  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0));
 end Multiplexeur;
 
--- diff 0
+-- diff (changé par NOP) 0 // On devrá oublier le diff. C'est pas demandé dans le pdf et on a besoin du NOP.
 -- add 1
 -- mul 2
 -- sou 3
--- div 4
+-- div 4 // not yet
 -- cop 5
 -- afc 6 *
 -- load 7 *
 -- store 8 @
--- equal 9 
--- inf 10
--- infegal 11
--- sup 12 
--- supegal 13
--- jmp 14 * @
--- jmpc 15 * @
+-- equal 9 // not yet
+-- inf 10 // not yet
+-- infegal 11 // not yet
+-- sup 12 // not yet
+-- supegal 13 // not yet
+-- jmp 14 * @ // not yet
+-- jmpc 15 * @ // not yet
 
 architecture Behavioral of Multiplexeur is
 
@@ -67,11 +67,5 @@ begin
 		I0 when x"E",
 		I0 when x"F",
 		I1 when others;
-	
-	-- Ameliorer le code, et penser aux clés suivantes pour les mux's et bien initializer les muxseux
-	Cle <= "0000011000000011";
-	With Donnee(to_integer(unsigned(OP))) select
-		S <= 	I0 when '1',
-				I1 when others;
 end Behavioral;
 

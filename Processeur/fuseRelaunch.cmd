@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "secureip" -o "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/MemoireTB_isim_beh.exe" -prj "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/MemoireTB_beh.prj" "work.MemoireTB" 
+-intstyle "ise" -incremental -lib "secureip" -o "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/ProjectTB_isim_beh.exe" -prj "/home/calvillo/Bureau/Compilateur/VHDL/Processeur/ProjectTB_beh.prj" "work.ProjectTB" 

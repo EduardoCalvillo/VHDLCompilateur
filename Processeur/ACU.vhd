@@ -19,20 +19,12 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-
 entity ALU is
-
-	generic(MAX_BITS: Natural :=16; OP_BITS: Natural:= 4);
+generic(MAX_BITS: Natural :=16; OP_BITS: Natural:= 4);
+--MAX_BITS: Taille maximale des donnés.
+--OP_BITS: Quantité d'opérations possibles.
 	Port ( A : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
            B : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
            S : out  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
@@ -46,10 +38,19 @@ end ALU;
 architecture Behavioral of ALU is
 	signal Stmp : STD_LOGIC_VECTOR (MAX_BITS*2-1 downto 0);
 begin
-	Stmp <= 	std_logic_vector(unsigned(x"0000"&A) + unsigned(x"0000"&B)) when OP = x"1" else
+	Stmp <= 	-- Traitement des opérations arithmethiques.
+				std_logic_vector(unsigned(x"0000"&A) + unsigned(x"0000"&B)) when OP = x"1" else
 				std_logic_vector(unsigned(x"0000"&A) - unsigned(x"0000"&B)) when OP = x"3" else 
 				std_logic_vector(unsigned(A) * unsigned(B)) when OP = x"2" else
-				std_logic_vector(unsigned(x"0000"&A) / unsigned(x"0000"&B)) when OP = x"4" else
+				-- Vérification de division par 0.
+				std_logic_vector(unsigned(x"0000"&A) / unsigned(x"0000"&B)) when OP = x"4" and B /= x"0000" else
+				x"7FFF7FFF" when OP = x"4" and B = x"0000" else
+				-- Traitement des calculs logiques.
+				(0 => '1', others => '0') when OP = x"9" and A = B else
+				(0 => '1', others => '0') when OP = x"A" and A < B else
+				(0 => '1', others => '0') when OP = x"B" and A <= B else
+				(0 => '1', others => '0') when OP = x"C" and A > B else
+				(0 => '1', others => '0') when OP = x"D" and A >= B else
 				(others => '0');
 	C <= Stmp (MAX_BITS) when OP = x"1" else '0';
 	O <= Stmp (MAX_BITS) when OP = x"3" and not(Stmp((MAX_BITS*2)-1 downto MAX_BITS) = x"0000") and not(Stmp((MAX_BITS*2)-1 downto MAX_BITS) = x"FFFF")  else 

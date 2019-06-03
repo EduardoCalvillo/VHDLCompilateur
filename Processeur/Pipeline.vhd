@@ -20,17 +20,10 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
 entity Pipeline is
-	generic(MAX_BITS: Natural :=16; OP_BITS: Natural:= 4);
+generic(MAX_BITS: Natural :=16; OP_BITS: Natural:= 4);
+--MAX_BITS: Taille maximale des donnés.
+--OP_BITS: Quantité d'opérations possibles.
     Port ( Ain : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
            Bin : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
            Opin : in  STD_LOGIC_VECTOR (OP_BITS-1 downto 0);
