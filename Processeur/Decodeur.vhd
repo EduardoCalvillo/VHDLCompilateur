@@ -37,17 +37,16 @@ end Decodeur;
 architecture Behavioral of Decodeur is
 	alias CodeOP : STD_LOGIC_VECTOR(OP_BITS-1 downto 0) is Ins(LEN_INSTR-1 downto (LEN_INSTR-OP_BITS));
 begin
-	A <= x"0000" when Ins = x"0000000" else --NOP
-		x"00"&Ins(23 downto 16) when CodeOP = x"8" or CodeOP = x"E" or CodeOP = x"F" else --Addresse (STORE, JMP, JMPC)
+	A <= x"0000" when Ins = x"0000000" or CodeOP = x"E" or CodeOP = x"F" else --NOP
+		x"00"&Ins(23 downto 16) when CodeOP = x"8" else --Addresse (STORE)
 		x"000"&Ins(19 downto 16); --Registre
 		
-	OP <= x"0" when Ins = x"0000000" else --NOP
+	OP <= x"0" when Ins = x"0000000" or CodeOP = x"E" or CodeOP = x"F" else --NOP
 		CodeOP;
 		
-	B <= x"0000" when Ins = x"0000000" else --NOP
+	B <= x"0000" when Ins = x"0000000" or CodeOP = x"E" or CodeOP = x"F" else --NOP
 		Ins(15 downto 0) when CodeOP = x"6" else --Donée (AFC)
 		x"00"&Ins(15 downto 8) when CodeOP = x"7" else--Addresse (LOAD)
-		x"0000" when CodeOP = x"E" else --Non utilisé (JMP)
 		x"000"&Ins(11 downto 8); --Registre
 		
 	C <= x"0000" when Ins = x"0000000" or CodeOP = x"5" or CodeOP = x"6" or CodeOP = x"7" or CodeOP = x"8" or CodeOP = x"E" or CodeOP = x"F" else --Paramètre non utilisé

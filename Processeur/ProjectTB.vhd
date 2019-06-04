@@ -30,7 +30,7 @@ USE ieee.std_logic_1164.ALL;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
+USE ieee.numeric_std.ALL;
  
 ENTITY ProjectTB IS
 END ProjectTB;
@@ -54,8 +54,8 @@ ARCHITECTURE behavior OF ProjectTB IS
    signal INST_SEL : std_logic_vector(15 downto 0) := (others => '0');
    signal BR_RST : std_logic := '1';
    signal MEM_RST : std_logic := '0';
-
-   -- Clock period definitions
+	
+	-- Clock period definitions
    constant CLK_period : time := 10 ns;
  
 BEGIN
@@ -80,6 +80,7 @@ BEGIN
 
    -- Stimulus process
    stim_proc: process
+	variable ins : STD_LOGIC_VECTOR(15 downto 0);
    begin		
       -- hold reset state for 100 ns.
 		BR_RST <= '0';
@@ -87,74 +88,13 @@ BEGIN
       wait for 100 ns;	
 		BR_RST <= '1';
 		MEM_RST <= '0';
-
-		INST_SEL <= x"0001";
-      wait for CLK_period;
-		INST_SEL <= x"0002";
-      wait for CLK_period;
-		INST_SEL <= x"0003";
-      wait for CLK_period;
-		INST_SEL <= x"0004";
-      wait for CLK_period;
-		INST_SEL <= x"0005";
-      wait for CLK_period;
-		INST_SEL <= x"0006";
-      wait for CLK_period;
-		INST_SEL <= x"0007";
-      wait for CLK_period;
-		INST_SEL <= x"0008";
-      wait for CLK_period;
-		INST_SEL <= x"0009";
-      wait for CLK_period;
-		INST_SEL <= x"000A";
-      wait for CLK_period;
-		INST_SEL <= x"000B";
-      wait for CLK_period;
-		INST_SEL <= x"000C";
-      wait for CLK_period;
-		INST_SEL <= x"000D";
-      wait for CLK_period;
-		INST_SEL <= x"000E";
-      wait for CLK_period;
-		INST_SEL <= x"000F";
-      wait for CLK_period;
-		INST_SEL <= x"0010";
-      wait for CLK_period;
-		INST_SEL <= x"0011";
-      wait for CLK_period;
-		INST_SEL <= x"0012";
-      wait for CLK_period;
-		INST_SEL <= x"0013";
-      wait for CLK_period;
-		INST_SEL <= x"0014";
-      wait for CLK_period;
-		INST_SEL <= x"0015";
-      wait for CLK_period;
-		INST_SEL <= x"0016";
-      wait for CLK_period;
-		INST_SEL <= x"0017";
-      wait for CLK_period;
-		INST_SEL <= x"0018";
-      wait for CLK_period;
-		INST_SEL <= x"0019";
-      wait for CLK_period;
-		INST_SEL <= x"001A";
-      wait for CLK_period;
-		INST_SEL <= x"001B";
-      wait for CLK_period;
-		INST_SEL <= x"001C";
-      wait for CLK_period;
-		INST_SEL <= x"001D";
-      wait for CLK_period;
-		INST_SEL <= x"001E";
-      wait for CLK_period;
-		INST_SEL <= x"001F";
-      wait for CLK_period;
-		INST_SEL <= x"0020";
-      wait for CLK_period;
-		INST_SEL <= x"0021";
-      wait for CLK_period;
 		
+		ins := x"0000";
+		while(to_integer(unsigned(ins)) <= 40) loop
+			INST_SEL <= ins;
+			ins := std_logic_vector(unsigned(ins) + x"0001");
+			wait for CLK_period;
+		end loop;
       wait;
    end process;
 

@@ -1,3 +1,0 @@
-vhdl isim_temp "../common.vhd"
-vhdl isim_temp "MemoireInst.vhd"
-vhdl isim_temp "MemoireInstTB.vhd"
