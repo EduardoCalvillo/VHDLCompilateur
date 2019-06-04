@@ -5,14 +5,14 @@ Parameter TMPDIR set to /home/calvillo/Bureau/Compilateur/VHDL/Processeur/xst/pr
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to /home/calvillo/Bureau/Compilateur/VHDL/Processeur/xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: MemoireInst.prj
@@ -51,13 +51,13 @@ Parsing entity <MemoireInst>.
 Parsing architecture <Behavioral> of entity <memoireinst>.
 
 
-Total REAL time to Xst completion: 3.00 secs
-Total CPU time to Xst completion: 2.79 secs
+Total REAL time to Xst completion: 2.00 secs
+Total CPU time to Xst completion: 2.18 secs
  
 --> 
 
 
-Total memory usage is 301340 kilobytes
+Total memory usage is 301336 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)

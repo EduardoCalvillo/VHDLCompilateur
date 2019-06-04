@@ -97,7 +97,7 @@ LAB0:    t6 = ((STD_TEXTIO) + 3400);
     t10 = t9;
     t11 = (28U * 1U);
     t12 = t10;
-    memset(t12, (unsigned char)3, t11);
+    memset(t12, (unsigned char)2, t11);
     t13 = (t11 != 0);
     if (t13 == 1)
         goto LAB2;

@@ -42,7 +42,7 @@ package body common is
 
 		-- the rom is initialised with 1 because in my code an instruction filled with 1 does nothing  
 		-- it is a NOP (no operation), so the remaining instructions can't change the state of memories
-		variable rom: instrArray := (others => (others => '1'));
+		variable rom: instrArray := (others => (others => '0'));
 		variable f_line: line;
 		variable slv_v: std_logic_vector(LEN_INSTR-1 downto 0);
 		variable lines_read: integer := 0;

@@ -56,7 +56,7 @@ LAB0:    t1 = (t0 + 3864U);
 
 LAB3:    goto *t2;
 
-LAB2:    xsi_set_current_line(56, ng0);
+LAB2:    xsi_set_current_line(50, ng0);
 
 LAB6:    t2 = (t0 + 4680);
     *((int *)t2) = 1;
@@ -65,7 +65,7 @@ LAB6:    t2 = (t0 + 4680);
 LAB1:    return;
 LAB4:    t6 = (t0 + 4680);
     *((int *)t6) = 0;
-    xsi_set_current_line(57, ng0);
+    xsi_set_current_line(51, ng0);
     t2 = (t0 + 1192U);
     t4 = *((char **)t2);
     t3 = *((unsigned char *)t4);
@@ -104,7 +104,7 @@ LAB8:    t6 = (t0 + 1032U);
     t3 = t9;
     goto LAB10;
 
-LAB11:    xsi_set_current_line(58, ng0);
+LAB11:    xsi_set_current_line(52, ng0);
     t2 = xsi_get_transient_memory(256U);
     memset(t2, 0, 256U);
     t6 = t2;
@@ -128,12 +128,12 @@ LAB14:    t11 = (256U / t10);
     xsi_mem_set_data(t6, t6, t10, t11);
     goto LAB15;
 
-LAB16:    xsi_set_current_line(60, ng0);
+LAB16:    xsi_set_current_line(54, ng0);
     t2 = (t0 + 1992U);
     t6 = *((char **)t2);
     t2 = (t0 + 1672U);
     t7 = *((char **)t2);
-    t2 = (t0 + 7792U);
+    t2 = (t0 + 7800U);
     t17 = ieee_p_1242562249_sub_17802405650254020620_1035706684(IEEE_P_1242562249, t7, t2);
     t18 = (t17 - 0);
     t10 = (t18 * 1);
@@ -184,7 +184,7 @@ static void work_a_2760800999_3212880686_p_1(char *t0)
     char *t30;
     char *t31;
 
-LAB0:    xsi_set_current_line(64, ng0);
+LAB0:    xsi_set_current_line(58, ng0);
     t2 = (t0 + 1672U);
     t3 = *((char **)t2);
     t2 = (t0 + 1352U);
@@ -208,7 +208,7 @@ LAB14:    t17 = (t0 + 2472U);
     t18 = *((char **)t17);
     t17 = (t0 + 1352U);
     t19 = *((char **)t17);
-    t17 = (t0 + 7760U);
+    t17 = (t0 + 7768U);
     t20 = ieee_p_1242562249_sub_17802405650254020620_1035706684(IEEE_P_1242562249, t19, t17);
     t21 = (t20 - 0);
     t22 = (t21 * 1);
@@ -299,7 +299,7 @@ static void work_a_2760800999_3212880686_p_2(char *t0)
     char *t30;
     char *t31;
 
-LAB0:    xsi_set_current_line(65, ng0);
+LAB0:    xsi_set_current_line(59, ng0);
     t2 = (t0 + 1672U);
     t3 = *((char **)t2);
     t2 = (t0 + 1512U);
@@ -323,7 +323,7 @@ LAB14:    t17 = (t0 + 2472U);
     t18 = *((char **)t17);
     t17 = (t0 + 1512U);
     t19 = *((char **)t17);
-    t17 = (t0 + 7776U);
+    t17 = (t0 + 7784U);
     t20 = ieee_p_1242562249_sub_17802405650254020620_1035706684(IEEE_P_1242562249, t19, t17);
     t21 = (t20 - 0);
     t22 = (t21 * 1);

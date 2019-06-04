@@ -15,7 +15,7 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="13" />
+   <WVObjectSize size="14" />
    <wvobject fp_name="/projecttb/clk" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -73,25 +73,24 @@
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CustomSignalColor">#ffa500</obj_property>
    </wvobject>
-   <wvobject fp_name="/projecttb/uut/MemoireDonnees/mem[0]" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">[0]</obj_property>
-      <obj_property name="ObjectShortName">mem[0]</obj_property>
+   <wvobject fp_name="/projecttb/uut/MemoireDonnees/mem[127]" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">[127]</obj_property>
+      <obj_property name="ObjectShortName">mem[127]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#a0a0a4</obj_property>
    </wvobject>
-   <wvobject fp_name="/projecttb/uut/MemoireDonnees/mem[1]" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">[1]</obj_property>
-      <obj_property name="ObjectShortName">mem[1]</obj_property>
+   <wvobject fp_name="/projecttb/uut/MemoireDonnees/mem[128]" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">[128]</obj_property>
+      <obj_property name="ObjectShortName">mem[128]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#a0a0a4</obj_property>
    </wvobject>
-   <wvobject fp_name="/projecttb/uut/MemoireDonnees/mem[2]" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">[2]</obj_property>
-      <obj_property name="ObjectShortName">mem[2]</obj_property>
+   <wvobject fp_name="/projecttb/uut/MemoireDonnees/mem[129]" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">[129]</obj_property>
+      <obj_property name="ObjectShortName">mem[129]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#a0a0a4</obj_property>
+   </wvobject>
+   <wvobject fp_name="/projecttb/uut/MemoireDonnees/mem[130]" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">[130]</obj_property>
+      <obj_property name="ObjectShortName">mem[130]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>
