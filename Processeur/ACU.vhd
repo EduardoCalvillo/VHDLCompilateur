@@ -47,20 +47,32 @@ begin
 				x"7FFF7FFF" when OP = x"4" and B = x"0000" else
 				-- Traitement des calculs logiques.
 				(0 => '1', others => '0') when OP = x"9" and A = B else
-				(0 => '1', others => '0') when OP = x"A" and A < B else
-				(0 => '1', others => '0') when OP = x"B" and A <= B else
-				(0 => '1', others => '0') when OP = x"C" and A > B else
-				(0 => '1', others => '0') when OP = x"D" and A >= B else
+				(0 => '1', others => '0') when OP = x"A" and signed(A) < signed(B) else
+				(0 => '1', others => '0') when OP = x"B" and signed(A) <= signed(B) else
+				(0 => '1', others => '0') when OP = x"C" and signed(A) > signed(B) else
+				(0 => '1', others => '0') when OP = x"D" and signed(A) >= signed(B) else
 				(others => '0');
+				
 	C <= Stmp (MAX_BITS) when OP = x"1" else '0';
-	O <= Stmp (MAX_BITS) when OP = x"3" and not(Stmp((MAX_BITS*2)-1 downto MAX_BITS) = x"0000") and not(Stmp((MAX_BITS*2)-1 downto MAX_BITS) = x"FFFF")  else 
-				'1' when OP = x"1" and A(MAX_BITS-1) = '0' and B(MAX_BITS-1) = '0' and Stmp(MAX_BITS-1) = '1' else
-				'1' when OP = x"1" and A(MAX_BITS-1) = '1' and B(MAX_BITS-1) = '1' and Stmp(MAX_BITS-1) = '0' else
-				'1' when OP = x"2" and A(MAX_BITS-1) = '0' and B(MAX_BITS-1) = '1' and Stmp(MAX_BITS-1) = '1' else
-				'1' when OP = x"2" and A(MAX_BITS-1) = '1' and B(MAX_BITS-1) = '0' and Stmp(MAX_BITS-1) = '0' else
-				'0';	
+			
+			-- Overflow dans le signe en cas d'addition
+	O <=	'1' when OP = x"1" and A(MAX_BITS-1) = '0' and B(MAX_BITS-1) = '0' and Stmp(MAX_BITS-1) = '1' else
+			'1' when OP = x"1" and A(MAX_BITS-1) = '1' and B(MAX_BITS-1) = '1' and Stmp(MAX_BITS-1) = '0' else
+			-- Overflow dans le signe en cas de multiplication et division
+			'1' when (OP = x"2" or OP = x"4") and A(MAX_BITS-1) = '0' and B(MAX_BITS-1) = '0' and Stmp(MAX_BITS-1) = '1' else
+			'1' when (OP = x"2" or OP = x"4") and A(MAX_BITS-1) = '0' and B(MAX_BITS-1) = '1' and Stmp(MAX_BITS-1) = '0' else
+			'1' when (OP = x"2" or OP = x"4") and A(MAX_BITS-1) = '1' and B(MAX_BITS-1) = '0' and Stmp(MAX_BITS-1) = '0' else
+			'1' when (OP = x"2" or OP = x"4") and A(MAX_BITS-1) = '1' and B(MAX_BITS-1) = '1' and Stmp(MAX_BITS-1) = '1' else
+			-- Overflow dans le signe en cas de soustraction
+			'1' when OP = x"3" and A(MAX_BITS-1) = '0' and B(MAX_BITS-1) = '1' and Stmp(MAX_BITS-1) = '1' else
+			'1' when OP = x"3" and A(MAX_BITS-1) = '1' and B(MAX_BITS-1) = '0' and Stmp(MAX_BITS-1) = '0' else
+			'0';		
+		
+		
 	Z <= '1' when Stmp = x"00000000" else '0';
+	
 	N <= Stmp(MAX_BITS-1);
+	
 	S <= Stmp (MAX_BITS-1 downto 0);
 
 end Behavioral;

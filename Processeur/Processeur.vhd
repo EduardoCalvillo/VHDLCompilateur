@@ -22,26 +22,29 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity Processeur is
-generic(MAX_BITS: Natural:=16; OP_BITS : Natural:=4; MAX_ADDR_BR : Natural:= 4; MAX_ADDR_MD : NATURAL := 8);
+generic(MAX_BITS: Natural:=16; OP_BITS : Natural:=4; MAX_ADDR_BR : Natural:= 4; MAX_ADDR_MD : Natural:= 8; MAX_ADDR_MI : Natural:= 16);
 --MAX_BITS: Taille maximale des donnés.
 --OP_BITS: Quantité d'opérations possibles.
 --MAX_ADDR_MD: Quantité d'addresses disponibles dans la mémoire de données.
 --MAX_ADDR_BR: Quantité d'addresses disponibles dans le banc de registres.
+--MAX_ADDR_MI: Quantité d'addresses disponibles dans la mémoire d'instructions.
 	Port (
 		CLK : in STD_LOGIC;
+		INSPNTR_Reset : in STD_LOGIC; -- Actif à 1.
 		dec_A, dec_B, dec_C, data_di : in STD_LOGIC_VECTOR(MAX_BITS-1 downto 0);
 		dec_OP : in STD_LOGIC_VECTOR(OP_BITS-1 downto 0);
-		BR_Reset : in STD_LOGIC;
+		BR_Reset : in STD_LOGIC; -- Actif à 0.
 		data_do : out STD_LOGIC_VECTOR(MAX_BITS-1 downto 0);
 		data_a : out STD_LOGIC_VECTOR(MAX_ADDR_MD-1 downto 0);
-		data_we : out STD_LOGIC
+		data_we : out STD_LOGIC; -- 0 pour écriture, 1 pour lecture.
+		addr_inst : out STD_LOGIC_VECTOR(MAX_ADDR_MI-1 downto 0)
 		);
 end Processeur;
 
 architecture Behavioral of Processeur is
 	
 	component BRcomponent
-		port (
+		Port (
 			CLK : in STD_LOGIC;
 			RST : in STD_LOGIC;
 			addrA : in STD_LOGIC_VECTOR (MAX_ADDR_BR-1 downto 0); 
@@ -55,7 +58,7 @@ architecture Behavioral of Processeur is
 	end component;
 	
 	component ALUcomponent
-		port (
+		Port (
 			A : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
 			B : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
 			S : out  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
@@ -68,7 +71,7 @@ architecture Behavioral of Processeur is
 	end component;
 	
 	component PL
-		port (
+		Port (
 			Ain : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
 			Bin : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
 			Opin : in  STD_LOGIC_VECTOR (OP_BITS-1 downto 0);
@@ -82,19 +85,30 @@ architecture Behavioral of Processeur is
 	end component;
 		
 	component MULcomponent
-		port (
+		Port (
 			Key : in STD_LOGIC_VECTOR((2**OP_BITS)-1 downto 0);
 			OP : in  STD_LOGIC_VECTOR (OP_BITS-1 downto 0);
-           I0 : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
-           I1 : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
-           S : out  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0)
+			I0 : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+			I1 : in  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+			S : out  STD_LOGIC_VECTOR (MAX_BITS-1 downto 0)
+		);
+	end component;
+	
+	component InstPointerComponent
+		Port ( 
+			CLK : in  STD_LOGIC;
+			Rst : in STD_LOGIC; -- Actif à 1.
+			OP : in STD_LOGIC_VECTOR (OP_BITS-1 downto 0);
+			A : in STD_LOGIC_VECTOR (MAX_BITS-1 downto 0);
+			Addr : out  STD_LOGIC_VECTOR (MAX_ADDR_MI-1 downto 0)
 		);
 	end component;
 	
 	for all : BRcomponent use entity Work.BancRegistres;
 	for all : ALUcomponent use entity Work.ALU;
 	for all : PL use entity Work.Pipeline;
-	for all: MULcomponent use entity Work.ChoiceMux;
+	for all : MULcomponent use entity Work.ChoiceMux;
+	for all : InstPointercomponent use entity Work.InstructionPointer;
 	
 	type Pipeline_record is 
 	record
@@ -143,6 +157,8 @@ architecture Behavioral of Processeur is
 	signal MUL : Mul_record;
 	
 begin
+	
+	InstructionPointer : InstPointercomponent port map (CLK, INSPNTR_Reset, dec_OP, dec_A, Addr_inst);
 	
 	LI_DI : PL port map(dec_A, dec_B, dec_OP, dec_C, LI_DI_EX.A, LI_DI_EX.B, LI_DI_EX.OP, LI_DI_EX.C, CLK);
 	

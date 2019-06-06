@@ -42,18 +42,18 @@ ARCHITECTURE behavior OF ProjectTB IS
     COMPONENT Project
     PORT(
          CLK : IN  std_logic;
-         INST_SEL : IN  std_logic_vector(15 downto 0);
          BR_RST : IN  std_logic;
-         MEM_RST : IN  std_logic
+         MEM_RST : IN  std_logic;
+			INSPNTR_RST : in STD_LOGIC
         );
     END COMPONENT;
     
 
    --Inputs
    signal CLK : std_logic := '0';
-   signal INST_SEL : std_logic_vector(15 downto 0) := (others => '0');
    signal BR_RST : std_logic := '1';
    signal MEM_RST : std_logic := '0';
+	signal INSPNTR_RST : std_logic := '0';
 	
 	-- Clock period definitions
    constant CLK_period : time := 10 ns;
@@ -63,9 +63,9 @@ BEGIN
 	-- Instantiate the Unit Under Test (UUT)
    uut: Project PORT MAP (
           CLK => CLK,
-          INST_SEL => INST_SEL,
           BR_RST => BR_RST,
-          MEM_RST => MEM_RST
+          MEM_RST => MEM_RST,
+			 INSPNTR_RST => INSPNTR_RST
         );
 
    -- Clock process definitions
@@ -80,21 +80,16 @@ BEGIN
 
    -- Stimulus process
    stim_proc: process
-	variable ins : STD_LOGIC_VECTOR(15 downto 0);
    begin		
       -- hold reset state for 100 ns.
 		BR_RST <= '0';
 		MEM_RST <= '1';
+		INSPNTR_RST <= '1';
       wait for 100 ns;	
 		BR_RST <= '1';
 		MEM_RST <= '0';
-		
-		ins := x"0000";
-		while(to_integer(unsigned(ins)) <= 40) loop
-			INST_SEL <= ins;
-			ins := std_logic_vector(unsigned(ins) + x"0001");
-			wait for CLK_period;
-		end loop;
+		INSPNTR_RST <= '0';
+		wait for CLK_period;
       wait;
    end process;
 

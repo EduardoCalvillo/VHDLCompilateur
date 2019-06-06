@@ -18,9 +18,9 @@ package common is
 	-- store an instruction
 	-- maybe some of you have instruction with two operands: OP_CODE A B, you will need 24 bits to
 	-- store an instruction, so you will have to adjust LEN_INSTR
-change the size of the bus according to the size of your instruction
+--!!change the size of the bus according to the size of your instruction
 	constant LEN_SEL: natural := 16;
-	constant LEN_INSTR: natural := 32;
+	constant LEN_INSTR: natural := 28;
 
 	type instrArray is array(0 to 2**LEN_SEL-1) of std_logic_vector(LEN_INSTR-1 downto 0);
 
@@ -42,7 +42,7 @@ package body common is
 
 		-- the rom is initialised with 1 because in my code an instruction filled with 1 does nothing  
 		-- it is a NOP (no operation), so the remaining instructions can't change the state of memories
-		variable rom: instrArray := (others => (others => '1'));
+		variable rom: instrArray := (others => (others => '0'));
 		variable f_line: line;
 		variable slv_v: std_logic_vector(LEN_INSTR-1 downto 0);
 		variable lines_read: integer := 0;
