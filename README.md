@@ -25,4 +25,5 @@ LOAD R0 127 -> 7007F00
 <li>We suggest that the first instruction of your .asm file is a NOP.</li>
 <li>The 15nth operator (JMPC) is not implemented.</li>
 <li>The alea unit management is not implemented, so you must insert NOPs manually.</li>
+<li>Our data memory has a maximum size of 255 (8 bits). As a result the LOAD and STORE instructions have parameters of only 8 bits</li>
 </ul>
